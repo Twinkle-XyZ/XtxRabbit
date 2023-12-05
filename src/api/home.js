@@ -1,9 +1,13 @@
 import instance from '@/utils/request.js'
 
 // 获取轮播图数据
-export function getBannerAPI() {
+export function getBannerAPI(params = {}) {
+  const { distributionSite = '1' } = params
   return instance({
-    url: '/home/banner'
+    url: '/home/banner',
+    params: {
+      distributionSite
+    }
   })
 }
 

@@ -17,7 +17,8 @@ const router = createRouter({
           component: Home
         },
         {
-          path: '/category',
+          // 动态式传参
+          path: '/category/:id',
           component: Category
         }
       ]
