@@ -6,7 +6,7 @@ import { getGoodsAPI } from '@/api/home'
 const goodsList = ref([])
 const getGoodList = async () => {
   const res = await getGoodsAPI()
-  console.log(res)
+  // console.log(res)
   goodsList.value = res.result
 }
 onMounted(() => getGoodList())
