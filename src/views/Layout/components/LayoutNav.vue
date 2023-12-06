@@ -1,15 +1,32 @@
-<script setup></script>
+<script setup>
+import { useUserStore } from '@/stores/user.js'
+import { useRouter } from 'vue-router'
+
+const userStore = useUserStore()
+const router = useRouter()
+
+// 退出登录
+const logout = () => {
+  userStore.setUserInfo({})
+  router.push('/login')
+}
+</script>
 
 <template>
   <nav class="app-topnav">
     <div class="container">
       <ul>
-        <template v-if="true">
+        <!-- 判断登录，根据是否有token -->
+        <template v-if="userStore.userInfo.token">
           <li>
-            <a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a>
+            <a href="javascript:;"
+              ><i class="iconfont icon-user"></i
+              >{{ userStore.userInfo.account }}</a
+            >
           </li>
           <li>
             <el-popconfirm
+              @confirm="logout"
               title="确认退出吗?"
               confirm-button-text="确认"
               cancel-button-text="取消"
@@ -23,7 +40,9 @@
           <li><a href="javascript:;">会员中心</a></li>
         </template>
         <template v-else>
-          <li><a href="javascript:;">请先登录</a></li>
+          <li @click="$router.push('/login')">
+            <a href="javascript:;">请先登录</a>
+          </li>
           <li><a href="javascript:;">帮助中心</a></li>
           <li><a href="javascript:;">关于我们</a></li>
         </template>
