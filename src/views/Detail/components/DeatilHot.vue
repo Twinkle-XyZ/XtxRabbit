@@ -5,7 +5,8 @@ import { useRoute } from 'vue-router'
 
 const props = defineProps({
   type: {
-    type: Number
+    type: Number,
+    default: 1
   }
 })
 // 基础列表
